@@ -1,13 +1,13 @@
 import { Router } from "express";
-
+import { addUser, getUsers, updateUser, login } from "./user.controller";
 const userRouter = Router();
 
-userRouter.get("/user"); // get user login info
+userRouter.get("/user", getUsers); // get all user info
 userRouter.get("/token"); // give user a token
 
-userRouter.post("/user"); // add user here
+userRouter.post("/user", addUser); // add user here
 userRouter.post("/login"); // check user info is correct and login
 
-userRouter.put("/user"); // update any user informaiton
+userRouter.put("/user", updateUser); // update any user informaiton
 
 export default userRouter
