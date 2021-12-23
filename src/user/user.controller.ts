@@ -43,7 +43,8 @@ export const updateUser = async (req: Request, res: Response) => {
 
 export const login = async (req: userAuthReqest, res: Response) => {
   try {
-    res.sendStatus(200).send({ user: req.user });
+    // Error here
+    // res.sendStatus(200).send({ user: req.user });
   } catch (e) {
     console.log(e);
   }
