@@ -1,30 +1,50 @@
-import User from './user.model'
-import {Request, Response } from 'express'
+import User from "./user.model";
+import { Request, Response } from "express";
 
 interface userAuthReqest extends Request {
-    user: object
+  user: object;
 }
 
-export const addUser = async (req: Request, res: Response):Promise<any> => {
-    const newUser = new User({name: "Ahmed", address: "home", email:"atomcgarry@gmail.com", password: "test123"})
+export const addUser = async (req: Request, res: Response): Promise<any> => {
+  try {
+    const newUser = new User({
+      name: "Ahmed",
+      address: "home",
+      email: "atomcgarry@gmail.com",
+      password: "test123",
+    });
     await newUser.save();
-    res.sendStatus(200).send({message: "success", newUser})
-}
+    res.sendStatus(200).send({ message: "success", newUser });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const getUsers = async (req: Request, res: Response) => {
-    const filter = {}
-    const users = await User.find(filter)
-    res.sendStatus(200).send({message: "success", users})
-}
+  try {
+    const filter = {};
+    const users = await User.find(filter);
+    res.sendStatus(200).send({ message: "success", users });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const updateUser = async (req: Request, res: Response) => {
+  try {
     const updateUser = await User.findOneAndUpdate(
-        {username: req.body.username},
-        {newUser: req.body.newUser}
-    )
-}
+      { username: req.body.username },
+      { newUser: req.body.newUser }
+    );
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const login = async (req: userAuthReqest, res: Response) => {
-    res.sendStatus(200).send({user: req.user})
-}
-
+  try {
+    res.sendStatus(200).send({ user: req.user });
+  } catch (e) {
+    console.log(e);
+  }
+};
