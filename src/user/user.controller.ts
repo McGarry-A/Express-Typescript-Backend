@@ -1,11 +1,8 @@
 import User from './user.model'
 import {Request, Response } from 'express'
 
-interface user {
-    name: string;
-    email: string;
-    password: string;
-    address: string;
+interface userAuthReqest extends Request {
+    user: object
 }
 
 export const addUser = async (req: Request, res: Response):Promise<any> => {
@@ -26,5 +23,8 @@ export const updateUser = async (req: Request, res: Response) => {
         {newUser: req.body.newUser}
     )
 }
-export const login = async (req: Request, res: Response) => {}
+
+export const login = async (req: userAuthReqest, res: Response) => {
+    res.sendStatus(200).send({user: req.user})
+}
 
