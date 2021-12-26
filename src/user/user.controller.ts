@@ -1,10 +1,6 @@
 import User from "./user.model";
 import { Request, Response } from "express";
 
-interface userAuthReqest extends Request {
-  user: object;
-}
-
 export const addUser = async (req: Request, res: Response): Promise<any> => {
   try {
     const newUser = new User({
@@ -13,7 +9,8 @@ export const addUser = async (req: Request, res: Response): Promise<any> => {
       email: "atomcgarry@gmail.com",
       password: "test123",
     });
-    await newUser.save();
+    // await newUser.save();
+    console.log(req.body)
     res.sendStatus(200).send({ message: "success", newUser });
   } catch (e) {
     console.log(e);
@@ -41,11 +38,11 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: userAuthReqest, res: Response) => {
-  try {
+// export const login = async (req: userAuthReqest, res: Response) => {
+//   try {
     // Error here
     // res.sendStatus(200).send({ user: req.user });
-  } catch (e) {
-    console.log(e);
-  }
-};
+//   } catch (e) {
+//     console.log(e);
+//   }
+// };

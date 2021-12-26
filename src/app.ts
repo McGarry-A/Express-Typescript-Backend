@@ -1,7 +1,11 @@
+import "../src/db/connection"
 import express, {Request, Response} from "express";
+import userRouter from "./user/user.routes";
+
 
 const app = express();
 app.use(express.json()) // Allows us to pass JSO N bodys in post request.
+app.use(userRouter)
 
 app.route('/')
 .get((req: Request, res: Response) => {
