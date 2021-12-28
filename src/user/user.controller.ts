@@ -10,7 +10,7 @@ export const addUser = async (req: Request, res: Response): Promise<any> => {
       password: "test123",
     });
     // await newUser.save();
-    console.log(req.body)
+    console.log(req.body);
     res.sendStatus(200).send({ message: "success", newUser });
   } catch (e) {
     console.log(e);
@@ -40,8 +40,8 @@ export const updateUser = async (req: Request, res: Response) => {
 
 // export const login = async (req: userAuthReqest, res: Response) => {
 //   try {
-    // Error here
-    // res.sendStatus(200).send({ user: req.user });
+// Error here
+// res.sendStatus(200).send({ user: req.user });
 //   } catch (e) {
 //     console.log(e);
 //   }
