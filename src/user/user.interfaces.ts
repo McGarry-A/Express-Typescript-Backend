@@ -1,7 +1,7 @@
 import {Request} from 'express'
 
 interface UserAuthInterface extends Request {
-    user: object
+    user?: object
 }
 
 export default UserAuthInterface
