@@ -4,45 +4,47 @@ import UserAuthInterface from "./user.interfaces";
 
 export const addUser = async (req: Request, res: Response): Promise<any> => {
   try {
-    const newUser = new User({
-      name: "Ahmed",
-      address: "home",
-      email: "atomcgarry@gmail.com",
-      password: "test123",
-    });
-    // await newUser.save();
+    const newUser = new User(req.body);
+    await newUser.save();
     console.log(req.body);
-    res.sendStatus(200).send({ message: "success", newUser });
+    res.status(200).send({ message: "success", newUser });
   } catch (e) {
     console.log(e);
+    res.status(418).send({ message: "error adding user" });
   }
 };
 
 export const getUsers = async (req: Request, res: Response) => {
   try {
-    const filter = {};
-    const users = await User.find(filter);
-    res.sendStatus(200).send({ message: "success", users });
+    const users = await User.find({});
+    res.status(200).send({ message: "success", users });
   } catch (e) {
     console.log(e);
+    res.status(418).send({ message: "error getting users" });
   }
 };
 
+// needs more work
 export const updateUser = async (req: Request, res: Response) => {
   try {
-    const updateUser = await User.findOneAndUpdate(
-      { username: req.body.username },
-      { newUser: req.body.newUser }
-    );
+    const filter = { email: req.body.email };
+    const update = { newEmail: req.body.newEmail };
+    const updatedUser = await User.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    res.status(200).send({ message: "success", updatedUser });
   } catch (e) {
     console.log(e);
+    res.status(418).send({ message: "error updating users" });
   }
 };
 
 export const login = async (req: UserAuthInterface, res: Response) => {
   try {
-    res.sendStatus(200).send({ user: req.user });
+    res.status(200).send({ user: req.user });
   } catch (e) {
     console.log(e);
+    res.status(401).send({ message: "error logging in" });
   }
 };
