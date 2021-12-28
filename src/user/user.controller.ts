@@ -1,5 +1,6 @@
 import User from "./user.model";
 import { Request, Response } from "express";
+import UserAuthInterface from "./user.interfaces";
 
 export const addUser = async (req: Request, res: Response): Promise<any> => {
   try {
@@ -38,11 +39,10 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
-// export const login = async (req: userAuthReqest, res: Response) => {
-//   try {
-// Error here
-// res.sendStatus(200).send({ user: req.user });
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
+export const login = async (req: UserAuthInterface, res: Response) => {
+  try {
+    res.sendStatus(200).send({ user: req.user });
+  } catch (e) {
+    console.log(e);
+  }
+};
