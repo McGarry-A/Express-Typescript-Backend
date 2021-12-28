@@ -2,6 +2,7 @@ import User from "./user.model";
 import { Request, Response } from "express";
 import UserAuthInterface from "./user.interfaces";
 
+// Good
 export const addUser = async (req: Request, res: Response): Promise<any> => {
   try {
     const newUser = new User(req.body);
@@ -14,6 +15,7 @@ export const addUser = async (req: Request, res: Response): Promise<any> => {
   }
 };
 
+// Good
 export const getUsers = async (req: Request, res: Response) => {
   try {
     const users = await User.find({});
@@ -24,7 +26,7 @@ export const getUsers = async (req: Request, res: Response) => {
   }
 };
 
-// needs more work
+// Needs more work
 export const updateUser = async (req: Request, res: Response) => {
   try {
     const filter = { email: req.body.email };
@@ -40,6 +42,7 @@ export const updateUser = async (req: Request, res: Response) => {
   }
 };
 
+// Needs more work
 export const login = async (req: UserAuthInterface, res: Response) => {
   try {
     res.status(200).send({ user: req.user });

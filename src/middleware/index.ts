@@ -1,10 +1,10 @@
 import User from "../user/user.model";
-import { Request, Response } from "express";
+import { Response, NextFunction } from "express";
 import UserAuthInterface from "../user/user.interfaces";
 
 export const tokenAuth = () => {};
 export const hashPassword = () => {};
-export const comparePasswords = async (req: UserAuthInterface, res: Response, next: Function): Promise<void> => {
+export const comparePasswords = async (req: UserAuthInterface, res: Response, next: NextFunction): Promise<void> => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (req.body.pass === user?.password) {
