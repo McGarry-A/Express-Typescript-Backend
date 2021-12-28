@@ -1,5 +1,5 @@
 import User from "../user/user.model";
-import { Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from "express";
 import UserAuthInterface from "../user/user.interfaces";
 
 export const tokenAuth = () => {};
@@ -16,3 +16,9 @@ export const comparePasswords = async (req: UserAuthInterface, res: Response, ne
       res.sendStatus(401).send({message: 'incorrect login details'})
   }
 };
+
+export const corsSetHeaders = (req: Request, res: Response, next: NextFunction): void => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next();
+}
