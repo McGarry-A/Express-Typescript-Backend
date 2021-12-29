@@ -6,8 +6,9 @@ export const tokenAuth = () => {};
 export const hashPassword = () => {};
 export const comparePasswords = async (req: UserAuthInterface, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const user = await User.findOne({ email: req.body.email });
-    if (req.body.pass === user?.password) {
+    const user = await User.findOne({ username: req.body.username });
+    console.log(user)
+    if (req.body.password === user?.password) {
       req.user = user as object;
       next();
     }

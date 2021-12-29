@@ -29,13 +29,11 @@ export const getUsers = async (req: Request, res: Response) => {
 // Good?
 export const login = async (req: UserAuthInterface, res: Response) => {
   try {
-    res.status(200).send({ user: req.user });
-    console.log("Logging in")
+    res.status(200).send({ message: "success", user: req.user });
   } catch (e) {
     console.log(e);
     res.status(401).send({ message: "error logging in" });
   }
-  
 };
 
 // Needs more work
