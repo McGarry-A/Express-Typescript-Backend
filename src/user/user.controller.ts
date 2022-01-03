@@ -4,7 +4,6 @@ import UserAuthInterface from "./user.interfaces";
 
 export const addUser = async (req: Request, res: Response): Promise<any> => {
   try {
-    req.body.basket = [{}]
     const newUser = new User(req.body);
     await newUser.save();
     console.log(req.body);
@@ -36,17 +35,17 @@ export const login = async (req: UserAuthInterface, res: Response) => {
 
 export const updateBasket = async (req: Request, res: Response) => {
   try {
-    const filter = { username: req.body.username }
-    const update = { basket: req.body.basket }
+    const filter = { username: req.body.username };
+    const update = { basket: req.body.basket };
     const updatedUser = await User.findOneAndUpdate(filter, update, {
       new: true,
     });
 
-    res.status(200).send({ message: "success", updatedUser})
+    res.status(200).send({ message: "success", updatedUser });
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 // Needs more work
 // Not in use at the moment
