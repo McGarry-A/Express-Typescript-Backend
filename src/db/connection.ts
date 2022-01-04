@@ -1,10 +1,9 @@
 import { connect } from "mongoose";
+require("dotenv").config();
 
 const connection = async (): Promise<void> => {
   try {
-    await connect(
-      "mongodb+srv://ahmedmcgarry:test123@babajohns.xspjn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-    );
+    await connect(process.env.MONGO_URI);
     console.log("Connected");
     return;
   } catch (error) {
